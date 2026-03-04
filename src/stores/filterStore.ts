@@ -1,7 +1,8 @@
 import { create } from 'zustand'
+import type { TaskStatus, TaskPriority } from '../api/types'
 
-export type StatusFilter = 'all' | 'active' | 'completed'
-export type PriorityFilter = 'all' | 'low' | 'medium' | 'high'
+export type StatusFilter = TaskStatus | 'all'
+export type PriorityFilter = TaskPriority | 'all'
 
 interface FilterState {
   statusFilter: StatusFilter
