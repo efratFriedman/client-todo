@@ -1,0 +1,72 @@
+@import '../../styles/variables.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 2rem;
+  padding: 1rem;
+
+  background: var(--bg-primary);
+  border-radius: 1rem;
+
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logoBox {
+  background: $primary-color;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.themeButton {
+  padding: 0.5rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+
+  background: transparent;
+  color: var(--text-secondary);
+
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: var(--hover-surface);
+    color: var(--text-primary);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

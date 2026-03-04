@@ -1,7 +1,78 @@
-$color-primary: #4f46e5;
-$color-light: #f3f4f6;
-$color-dark: #1f2937;
+/* SCSS Variables for non-theme specific values */
+$border-radius: 12px;
+$transition: 0.3s ease;
+$primary-color: #3b82f6;
+$primary-dark: #2563eb;
+$primary-shadow: rgba(59, 130, 246, 0.4);
+$success-color: #10b981;
+$warning-color: #f59e0b;
+$error-color: #ef4444;
 
-$spacing-small: 8px;
-$spacing-medium: 16px;
-$spacing-large: 24px;
+/* CSS Custom Properties - Light Theme (Default) */
+:root {
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --bg-hover: #f0f0f0;
+
+  /* Text Colors */
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --text-muted: #d1d5db;
+
+  /* Border & Shadow */
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.1);
+
+  /* Component Colors */
+  --hover-surface: rgba(15, 23, 42, 0.06);
+  --input-bg: #fff;
+  --input-border: #e5e7eb;
+
+  /* Semantic Colors */
+  --success: $success-color;
+  --warning: $warning-color;
+  --error: $error-color;
+  --info: $primary-color;
+}
+
+/* CSS Custom Properties - Dark Theme */
+.app.dark,
+body.dark {
+  /* Background Colors */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-hover: #1e293b;
+
+  /* Text Colors */
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --text-muted: #475569;
+
+  /* Border & Shadow */
+  --border-color: #334155;
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.4);
+
+  /* Component Colors */
+  --hover-surface: rgba(255, 255, 255, 0.07);
+  --input-bg: #1e293b;
+  --input-border: #334155;
+}
+
+/* Global Body Styles */
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  transition: background-color $transition, color $transition;
+}
