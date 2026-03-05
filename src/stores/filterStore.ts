@@ -15,7 +15,7 @@ interface FilterState {
 export const useFilterStore = create<FilterState>((set) => ({
   statusFilter: 'all',
   priorityFilter: 'all',
-  setStatusFilter: (status) => set({ statusFilter: status }),
+  setStatusFilter: (status) => { console.log('setting statusFilter to', status); set({ statusFilter: status }); },
   setPriorityFilter: (priority) => set({ priorityFilter: priority }),
   resetFilters: () => set({ statusFilter: 'all', priorityFilter: 'all' }),
 }))

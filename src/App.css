@@ -16,6 +16,16 @@
   flex-direction: column;
 }
 
+.tasks-container {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+}
+
+.tasks-container > * {
+  flex: 1;
+}
+
 main {
   display: flex;
   flex-direction: column;

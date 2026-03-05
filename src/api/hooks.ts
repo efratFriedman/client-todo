@@ -33,7 +33,12 @@ export function useToggleTaskStatus(){
             const { data } = await axios.patch<Task>(`${API_URL}/${taskId}`, updates);
             return data;
         },
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['tasks'] }),
+        onSuccess: (updatedTask) => {
+            queryClient.setQueryData<Task[]>(['tasks'], (old) =>
+                old ? old.map(t => t.id === updatedTask.id ? updatedTask : t) : old
+            );
+            queryClient.invalidateQueries({ queryKey: ['tasks'] });
+        },
         onError: (error: Error) => console.error('Error updating task:', error.message),
     })
 }
