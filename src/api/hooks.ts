@@ -22,10 +22,7 @@ export function useAddTask() {
             const { data } = await axios.post<Task>(API_URL, newTask);
             return data;
         },
-        onSuccess: (newTask) => {
-            queryClient.setQueryData<Task[]>(['tasks'], (oldTasks) =>
-                oldTasks ? [...oldTasks, newTask] : [newTask]
-            );
+        onSuccess: () => {
             toast.success('task created!')
         },
         onError: (error: Error) => console.error('Error adding task:', error.message),

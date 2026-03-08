@@ -12,10 +12,6 @@ const TaskList = () => {
   const filtered   = statusFilter === "all" ? tasks : tasks.filter((t) => t.status === statusFilter);
   const activeCount = tasks.filter((t) => t.status !== "completed").length;
 
-  console.log('tasks:', tasks);
-  console.log('statusFilter:', statusFilter);
-  console.log('filtered:', filtered);
-
   const countLabel = (() => {
     if (statusFilter === 'all') {
       return `${activeCount} active tasks`;
@@ -33,7 +29,7 @@ const TaskList = () => {
         <div className={styles.filters}>
           <button
             className={`${styles.filterTab} ${statusFilter === 'all' ? styles.active : ''}`}
-            onClick={() => { console.log('setting statusFilter to all'); setStatusFilter('all'); }}
+            onClick={() => { setStatusFilter('all'); }}
           >
             All
           </button>
