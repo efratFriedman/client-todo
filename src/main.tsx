@@ -4,6 +4,7 @@ import {QueryClientProvider } from '@tanstack/react-query'
 import App from './App.tsx'
 import './index.css'
 import { queryClient } from './api/queryClient.ts'
+import './socket/socket.ts'
 
 
 

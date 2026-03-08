@@ -1,0 +1,113 @@
+$primary:    #3b82f6;
+$transition: 0.25s ease;
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.9rem 0.75rem;
+  border-radius: 12px;
+  transition: background $transition;
+
+  &.light:hover { background: rgba(15,23,42,0.03); }
+  &.dark:hover  { background: rgba(255,255,255,0.04); }
+
+  &.done .title {
+    text-decoration: line-through;
+    opacity: 0.45;
+  }
+}
+
+.statusBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 1px;
+  flex-shrink: 0;
+  display: flex;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.iconPending   { color: #cbd5e1; }
+.iconProgress  { color: $primary; }
+.iconCompleted { color: #22c55e; }
+
+.spin {
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: opacity $transition;
+
+  .light & { color: #0f172a; }
+  .dark  & { color: #f1f5f9; }
+}
+
+.desc {
+  font-size: 0.8rem;
+  margin: 0;
+  line-height: 1.45;
+  color: #64748b;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.73rem;
+  color: #94a3b8;
+}
+
+.badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+}
+
+.low    { background: rgba(148,163,184,0.18); color: #64748b; }
+.medium { background: rgba(251,146, 60,0.15); color: #ea580c; }
+.high   { background: rgba(239, 68, 68,0.15); color: #dc2626; }
+
+.deleteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 8px;
+  flex-shrink: 0;
+  opacity: 0;
+  color: #94a3b8;
+  transition: opacity $transition, color $transition;
+
+  .item:hover & { opacity: 1; }
+  &:hover { color: #ef4444; }
+}
