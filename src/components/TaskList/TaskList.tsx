@@ -1,4 +1,4 @@
-import { useTasks } from "../../api/hooks";
+import { useTaskData } from "../../hooks/useTaskData";
 import { useFilterStore } from "../../stores/filterStore";
 import { useUiStore } from "../../stores/uiStore";
 import TaskItem from "../TaskItem/TaskItem";
@@ -7,20 +7,7 @@ import styles from "./TaskList.module.scss";
 const TaskList = () => {
   const { theme }                       = useUiStore();
   const { statusFilter, setStatusFilter }                = useFilterStore();
-  const { data: tasks = [], isLoading } = useTasks();
-
-  const filtered   = statusFilter === "all" ? tasks : tasks.filter((t) => t.status === statusFilter);
-  const activeCount = tasks.filter((t) => t.status !== "completed").length;
-
-  const countLabel = (() => {
-    if (statusFilter === 'all') {
-      return `${activeCount} active tasks`;
-      
-    }
-    const count = filtered.length;
-    const label = statusFilter === 'completed' ? 'completed' : statusFilter;
-    return `${count} ${label} task${count === 1 ? '' : 's'}`;
-  })();
+  const { filtered, countLabel, isLoading } = useTaskData();
 
   if (isLoading) return <div className={`${styles.empty} ${styles[theme]}`}>Loading...</div>;
 
