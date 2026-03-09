@@ -15,6 +15,7 @@ const TaskList = () => {
   const countLabel = (() => {
     if (statusFilter === 'all') {
       return `${activeCount} active tasks`;
+      
     }
     const count = filtered.length;
     const label = statusFilter === 'completed' ? 'completed' : statusFilter;
