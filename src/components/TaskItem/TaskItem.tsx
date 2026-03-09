@@ -3,6 +3,7 @@ import styles from "./TaskItem.module.scss";
 import { Trash2, Clock, CheckCircle2, Circle, Loader2 } from "lucide-react";
 import type { Task, TaskStatus } from "../../api/types";
 import { useDeleteTask, useToggleTaskStatus } from "../../api/hooks";
+import { formatDate } from "../../utils/date";
 
 const STATUS_CYCLE: Record<TaskStatus, TaskStatus> = {
   "pending":     "in-progress",
@@ -16,8 +17,7 @@ const StatusIcon = ({ status }: { status: TaskStatus }) => {
   return <Circle size={22} className={styles.iconPending} />;
 };
 
-const formatDate = (iso: string) =>
-  new Date(iso).toLocaleDateString("he-IL", { day: "numeric", month: "numeric", year: "numeric" });
+
 
 const TaskItem = ({ task }: { task: Task }) => {
   const { theme }                = useUiStore();
