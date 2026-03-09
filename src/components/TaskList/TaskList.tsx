@@ -5,11 +5,18 @@ import TaskItem from "../TaskItem/TaskItem";
 import styles from "./TaskList.module.scss";
 
 const TaskList = () => {
-  const { theme }                       = useUiStore();
-  const { statusFilter, setStatusFilter }                = useFilterStore();
-  const { filtered, countLabel, isLoading } = useTaskData();
+  const { theme } = useUiStore();
+  const { statusFilter, setStatusFilter } = useFilterStore();
+  const { filtered, countLabel, isLoading, isError, error, refetch } = useTaskData();
 
   if (isLoading) return <div className={`${styles.empty} ${styles[theme]}`}>Loading...</div>;
+
+  if (isError) return (
+    <div className={`${styles.empty} ${styles[theme]}`}>
+      Error loading tasks: {error?.message}
+      <button onClick={() => refetch()}>Try Again</button>
+    </div>
+  );
 
   return (
     <div className={`${styles.wrapper} ${styles[theme]}`}>
