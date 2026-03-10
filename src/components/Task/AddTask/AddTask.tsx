@@ -1,28 +1,20 @@
-import { useState } from "react";
 import styles from "./AddTask.module.scss";
 import { Plus } from "lucide-react";
 import { useUiStore } from "../../../stores/uiStore";
+import { useAddTaskForm } from "../../../hooks/useAddTaskForm";
 import type { TaskPriority } from "../../../api/types";
-import { useAddTask } from "../../../api/hooks";
 
-
-const PRIORITIES: TaskPriority[] = ["low", "medium", "high"];
 
 const AddTask = () => {
+  const PRIORITIES: TaskPriority[] = ["low", "medium", "high"];
   const { theme } = useUiStore();
-  const { mutate: addTask, isPending } = useAddTask();
-
-  const [title, setTitle]             = useState("");
-  const [description, setDescription] = useState("");
-  const [priority, setPriority]       = useState<TaskPriority>("medium");
-
-  const handleSubmit = () => {
-    if (!title.trim()) return;
-    addTask(
-      { title, description, status: "pending", priority },
-      { onSuccess: () => { setTitle(""); setDescription(""); } }
-    );
-  };
+  const {
+    title, setTitle,
+    description, setDescription,
+    priority, setPriority,
+    handleSubmit,
+    isPending
+  } = useAddTaskForm();
 
   return (
     <div className={`${styles.card} ${styles[theme]}`}>
