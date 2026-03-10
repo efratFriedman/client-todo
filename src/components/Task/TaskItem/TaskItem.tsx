@@ -1,70 +1,27 @@
 import { useUiStore } from "../../../stores/uiStore";
+import type { Task } from "../../../api/types";
+import TaskStatusButton from "./TaskStatusButton/TaskStatusButton";
+import DeleteTaskButton from "./DeleteTaskButton/DeleteTaskButton";
+import TaskContent from "./TaskContent/TaskContent";
 import styles from "./TaskItem.module.scss";
-import { Trash2, Clock, CheckCircle2, Circle, Loader2 } from "lucide-react";
-import type { Task, TaskStatus } from "../../../api/types";
-import { useDeleteTask, useToggleTaskStatus } from "../../../api/hooks";
-import { formatDate } from "../../../utils/date";
 
-const STATUS_CYCLE: Record<TaskStatus, TaskStatus> = {
-  "pending":     "in-progress",
-  "in-progress": "completed",
-  "completed":   "pending",
+type Props = {
+  task: Task;
 };
 
-const StatusIcon = ({ status }: { status: TaskStatus }) => {
-  if (status === "completed")   return <CheckCircle2 size={22} className={styles.iconCompleted} />;
-  if (status === "in-progress") return <Loader2      size={22} className={`${styles.iconProgress} ${styles.spin}`} />;
-  return <Circle size={22} className={styles.iconPending} />;
-};
-
-
-
-const TaskItem = ({ task }: { task: Task }) => {
-  const { theme }                = useUiStore();
-  const { mutate: toggleStatus, isPending: toggling } = useToggleTaskStatus();
-  const { mutate: deleteTask }   = useDeleteTask();
+const TaskItem = ({ task }: Props) => {
+  const { theme } = useUiStore();
 
   return (
-    <li className={`${styles.item} ${styles[theme]} ${task.status === "completed" ? styles.done : ""}`}>
-      <button
-        className={styles.statusBtn}
-        onClick={() => {
-          toggleStatus(
-            { taskId: task.id, updates: { status: STATUS_CYCLE[task.status] } },
-            {
-                  }
-          );
-        }}
-        aria-label="Toggle status"
-        disabled={toggling}
-      >
-        <StatusIcon status={task.status} />
-      </button>
+  <li className={`${styles.item} ${styles[theme]} ${task.status === "completed" ? styles.done : ""}`}>
 
-      <div className={styles.content}>
-        <div className={styles.titleRow}>
-          <span className={styles.title}>{task.title}</span>
-          <span className={`${styles.badge} ${styles[task.priority]}`}>
-            {task.priority.toUpperCase()}
-          </span>
-        </div>
+  <TaskStatusButton taskId={task.id} status={task.status} />
 
-        {task.description && <p className={styles.desc}>{task.description}</p>}
+  <TaskContent task={task} />
 
-        <div className={styles.meta}>
-          <Clock size={12} />
-          <span>{formatDate(task.createdAt)}</span>
-        </div>
-      </div>
+  <DeleteTaskButton taskId={task.id} />
 
-      <button
-        className={styles.deleteBtn}
-        onClick={() => deleteTask(task.id)}
-        aria-label="Delete task"
-      >
-        <Trash2 size={16} />
-      </button>
-    </li>
+</li>
   );
 };
 
