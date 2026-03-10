@@ -16,8 +16,8 @@ function App() {
       <ToastContainer position='top-right' autoClose={3000}/>
       <Header />
       <div className="tasks-container">
-        <TaskList />
         <AddTask />
+        <TaskList />
       </div>
     </div>
   );
