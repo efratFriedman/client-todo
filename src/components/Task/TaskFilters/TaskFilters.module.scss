@@ -12,34 +12,29 @@
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
-  background: transparent;
   border: 1px solid transparent;
 
-  .light & {
+  &.light {
     color: #64748b;
     background: #e2e8f0;
 
-    &:hover {
-      background: #cbd5e1;
-    }
-
-    &.active {
-      color: #ffffff;
-      background: #3b82f6;
-    }
+    &:hover { background: #cbd5e1; }
   }
 
-  .dark & {
+  &.dark {
     color: #94a3b8;
     background: #1e293b;
 
-    &:hover {
-      background: #334155;
-    }
+    &:hover { background: #334155; }
+  }
 
-    &.active {
-      color: #ffffff;
-      background: #3b82f6;
-    }
+  &.active.light {
+    color: #ffffff;
+    background: #3b82f6;
+  }
+
+  &.active.dark {
+    color: #ffffff;
+    background: #3b82f6;
   }
 }
