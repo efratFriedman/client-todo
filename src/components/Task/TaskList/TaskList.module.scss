@@ -9,7 +9,7 @@ $transition: 0.25s ease;
   transition: background $transition, box-shadow $transition;
 
   &.light { background: #ffffff; box-shadow: 0 4px 24px rgba(15,23,42,0.08); }
-  &.dark  { background: #0f172a; box-shadow: 0 10px 40px rgba(0,0,0,0.5);   }
+  &.dark  { background: #0f172a; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
 }
 
 .header {
@@ -18,52 +18,6 @@ $transition: 0.25s ease;
   align-items: center;
   padding: 1rem 1.2rem;
   gap: 1rem;
-}
-
-.filters {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.filterTab {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-  background: transparent;
-  border: 1px solid transparent;
-
-  .light & {
-    color: #64748b;
-    background: #e2e8f0;
-
-    &:hover {
-      background: #cbd5e1;
-    }
-
-    &.active {
-      color: #ffffff;
-      background: #3b82f6;
-    }
-  }
-
-  .dark & {
-    color: #94a3b8;
-    background: #1e293b;
-
-    &:hover {
-      background: #334155;
-    }
-
-    &.active {
-      color: #ffffff;
-      background: #3b82f6;
-    }
-  }
 }
 
 .count {

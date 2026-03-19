@@ -25,7 +25,9 @@ export function useAddTask() {
         onSuccess: () => {
             toast.success('task created!')
         },
-        onError: (error: Error) => console.error('Error adding task:', error.message),
+        onError: (err: any) => {
+            toast.error(`Failed to add task: ${err.message}`);
+        },
     })
 
 }
